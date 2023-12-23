@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Page</title>
+    <script type="text/javascript">
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+        history.go(1);
+    };
+    </script>
+</head>
+<body>
+    <h1>Welcome, User!</h1>
+
+    <!-- Add these lines -->
+    <a href="/curhats" class="btn">Go to Curhat</a> <br>
+    <a href="/projects" class="btn">Go to Project</a> <br> <br>
+    <form method="POST" action="/logout">
+        <input type="submit" value="Logout">
+    </form>
+
+</body>
+</html>

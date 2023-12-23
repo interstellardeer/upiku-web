@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <script>
+        function validateForm() {
+            var username = document.forms["myForm"]["username"].value;
+            var password = document.forms["myForm"]["password"].value;
+            if (username == "" || password == "") {
+                alert("Username and Password must be filled out");
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Login</h1>
+    <form method="POST" onsubmit="return validateForm()">
+        <input type="text" name="username" placeholder="Username" required><br>
+        <input type="password" name="password" placeholder="Password" required><br>
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>

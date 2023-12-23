@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Curhat Detail</title>
+</head>
+<body>
+    <h1>Curhat Detail</h1>
+    <p>User: {{ curhat.username }}</p>
+    <p>ID: {{ curhat.curhatid }}</p>
+    <p>Text: {{ curhat.text }}</p>
+    <p>Attachment: {{ curhat.attachment }}</p>
+    <p>Created At: {{ curhat.date, curhat.time }}</p>
+    <!-- Add more paragraphs here for each curhat property -->
+
+    {% if session['userid'] == curhat.userid %}
+    <h2>Edit Curhat</h2>
+    <form method="POST" action="{{ url_for('update_curhat', curhat_id=curhat.curhatid) }}">
+        <input type="text" name="text" placeholder="Text" value="{{ curhat.text }}" required><br>
+        <input type="text" name="attachment" placeholder="Attachment" value="{{ curhat.attachment }}"><br>
+        <input type="submit" value="Edit Curhat">
+    </form>
+
+    <h2>Delete Curhat</h2>
+    <form method="POST" action="{{ url_for('delete_curhat', curhat_id=curhat.curhatid) }}">
+        <input type="submit" value="Delete Curhat">
+    </form>
+    {% endif %}
+
+    <!-- Add this section to display comments -->
+    <h2>Comments</h2>
+    <!-- Add this line to display the number of comments -->
+    <p>Number of comments: {{ num_comments }}</p>
+    {% for comment in comments %}
+    <p>User: {{ comment.username }}</p>
+    <p>Text: {{ comment.text }}</p>
+    <p>Date: {{ comment.date }}</p>
+    <p>Time: {{ comment.time }}</p>
+    <p>Attachment: {{ comment.attachment }}</p>
+    {% endfor %}
+
+    <!-- Add this form to post a new comment -->
+    <h2>Add Comment</h2>
+    <form method="POST" action="{{ url_for('post_comment') }}">
+        <input type="hidden" name="curhatid" value="{{ curhat.curhatid }}">
+        <input type="hidden" name="userid" value="{{ session['userid'] }}">
+        <input type="text" name="text" placeholder="Text" required><br>
+        <input type="text" name="attachment" placeholder="Attachment"><br>
+        <input type="submit" value="Add Comment">
+    </form>
+
+    <a href="/curhats">Back to Curhats</a>
+</body>
+</html>

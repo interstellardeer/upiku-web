@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Curhats</title>
+</head>
+<body>
+    <h1>Curhats</h1>
+    <table>
+        <!-- Iterate over the curhats and create a table row for each one -->
+        {% for curhat in curhats %}
+        <tr>
+            <td><a href="{{ url_for('curhat_detail', curhat_id=curhat.curhatid) }}">{{ curhat.curhatid }}</a></td>
+            <td>{{ curhat.text }}</td>
+            <!-- Add more table data here for each curhat property -->
+        </tr>
+        {% endfor %}
+    </table>
+
+<h2>Add Curhat</h2>
+<form method="POST" action="/curhats">
+    <input type="text" name="text" placeholder="Text" required><br>
+    <input type="text" name="attachment" placeholder="Attachment"><br>
+    <input type="submit" value="Add Curhat">
+</form>
+
+<a href="/user">Back to User Page</a>
+</body>
+</html>
